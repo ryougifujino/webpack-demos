@@ -53,3 +53,16 @@ npm install html-webpack-plugin --save-dev
 ```
 npm run build
 ```
+
+## Cleaning up the /dist folder
+```
+npm install --save-dev clean-webpack-plugin
+```
+```
++ const CleanWebpackPlugin = require('clean-webpack-plugin');
+...
++     new CleanWebpackPlugin(['dist']),
+```
+```
+npm run build
+```
