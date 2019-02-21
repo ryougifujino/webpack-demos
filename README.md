@@ -16,3 +16,11 @@ This is to prevent an accidental publish of your code.
 -   "main": "index.js",
 }
 ```
+
+## Creating a Bundle
+Install lodash
+```
+npm install --save lodash
+```
+Let's run `npx webpack`, which will take our script at `src/index.js` as the entry point, and will
+ generate `dist/main.js` as the output. 
