@@ -1,48 +1,28 @@
-# Getting Started
+# Asset Management
 
-## Basic Setup
-Initialize npm, install webpack locally, and install the webpack-cli
+## Loading CSS
+In order to import a CSS file from within a JavaScript module, you need to install and add the 
+style-loader and css-loader to your module configuration:
 ```
-npm -y
-npm install webpack webpack-cli --save-dev
+npm install style-loader css-loader --save-dev
 ```
-
-Make sure we mark our package as private, as well as removing the main entry.
-This is to prevent an accidental publish of your code.
-**package.json**
+**webpack.config.js**
 ```
-{
-+   "private": true,
--   "main": "index.js",
-}
++   module: {
++     rules: [
++       {
++         test: /\.css$/,
++         use: [
++           'style-loader',
++           'css-loader'        // will be first used
++         ]
++       }
++     ]
++   }
 ```
-
-## Creating a Bundle
-Install lodash
-```
-npm install --save lodash
-```
-Let's run `npx webpack`, which will take our script at `src/index.js` as the entry point, and will
- generate `dist/main.js` as the output. 
-
-## Using a Configuration
-```
-npx webpack --config webpack.config.js
-```
-If a `webpack.config.js` is present, the webpack command picks it up by default. We use the 
-`--config` option here only to show that you can pass a config of any name. 
-
-## NPM Scripts
-Adding an npm script  
-**package.json**
-```
-"scripts": {
-+      "build": "webpack"
-},
-```
-Execute script
+This enables you to import `'./style.css'` into the file that depends on that styling. Now, when 
+that module is run, a `<style>` tag with the stringified css will be inserted into the `<head>` of 
+your html file.
 ```
 npm run build
 ```
-Within scripts we can reference locally installed npm packages by name(here is webpack) the same 
-way we did with npx. 
