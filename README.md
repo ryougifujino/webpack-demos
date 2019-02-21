@@ -26,3 +26,23 @@ your html file.
 ```
 npm run build
 ```
+
+## Loading Images
+```
+npm install file-loader --save-dev
+```
+**webpack.config.js**
+```
++       {
++         test: /\.(png|svg|jpg|gif)$/,
++         use: [
++           'file-loader'
++         ]
++       }
+```
+When you `import MyImage from './my-image.png'`, that image will be processed and added to your 
+output directory and the `MyImage` variable will contain the final url of that image after processing.  
+`css-loader` will handle `url('./my-image.png')` and `html-loader` will handle `<img src="./my-image.png" />`.
+```
+npm run build
+```
