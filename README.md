@@ -24,3 +24,10 @@ npm install --save lodash
 ```
 Let's run `npx webpack`, which will take our script at `src/index.js` as the entry point, and will
  generate `dist/main.js` as the output. 
+
+## Using a Configuration
+```
+npx webpack --config webpack.config.js
+```
+If a `webpack.config.js` is present, the webpack command picks it up by default. We use the 
+`--config` option here only to show that you can pass a config of any name. 
