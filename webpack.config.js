@@ -1,21 +1,12 @@
 const path = require('path');
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        app: "./src/index.js",
+        print: "./src/print.js"
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "bundle.js"
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.(jpg|gif|png|svg)$/,
-                use: ['file-loader']
-            }
-        ]
+        filename: "[name].bundle.js"
     }
 };
