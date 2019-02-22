@@ -73,3 +73,6 @@ Used to maintain a "common" configuration to keep things DRY.
 
 ## Specify the Mode
 `process.env.NODE_ENV` is not set to `"production"` within the build script `webpack.config.js`.
+
+## Minification
+production mode - TerserPlugin - start for minification
