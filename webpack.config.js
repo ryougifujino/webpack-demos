@@ -14,7 +14,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Code Splitting'
+            title: 'Lazy Loading'
         })
     ]
 };
