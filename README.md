@@ -14,3 +14,31 @@ which files in your project are "pure" and therefore safe to prune if unused.
 ```
 npm run build
 ```
+
+## Mark the file as side-effect-free
+**package.json**
+```
+{
+  "name": "your-project",
+  "sideEffects": false
+}
+```
+If code does not contain side effects, we can simply mark the property as `false` to inform webpack 
+that it can safely prune unused exports.
+> A "side effect" is defined as code that performs a special behavior when imported, other than 
+exposing one or more exports. An example of this are polyfills, which affect the global scope and 
+usually do not provide an export.
+
+**package.json**
+```
+{
+  "name": "your-project",
+  "sideEffects": [
+    "./src/some-side-effectful-file.js",     // assign code with side effects (uses micromatch)
+    "*.css"
+  ]
+}
+```
+Note that any imported file is subject to tree shaking. This means if you use something like 
+`css-loader` in your project and import a CSS file, it needs to be added to the side effect list so 
+it will not be unintentionally dropped in production mode.
