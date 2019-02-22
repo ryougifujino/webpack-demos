@@ -42,3 +42,16 @@ usually do not provide an export.
 Note that any imported file is subject to tree shaking. This means if you use something like 
 `css-loader` in your project and import a CSS file, it needs to be added to the side effect list so 
 it will not be unintentionally dropped in production mode.
+
+## Minify the Output
+**webpack.config.js**
+```
+- mode: 'development',
+- optimization: {
+-   usedExports: true
+- }
++ mode: 'production'
+```
+```
+npm run build
+```
