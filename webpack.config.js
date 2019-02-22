@@ -13,5 +13,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Caching'
         })
-    ]
+    ],
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        }
+    }
 };
