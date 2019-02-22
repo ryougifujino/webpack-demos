@@ -55,3 +55,12 @@ it will not be unintentionally dropped in production mode.
 ```
 npm run build
 ```
+
+## Conclusion
+In order to take advantage of tree shaking:
+- Use ES2015 module syntax (i.e. `import` and `export`).
+- Ensure no compilers transform your ES2015 module syntax into CommonJS modules (this is the default 
+behavior of popular Babel preset `@babel/preset-env`).
+- Add a `"sideEffects"` property to your project's `package.json` file.
+- Use `production` mode configuration option to enable various optimizations including minification 
+and tree shaking.
