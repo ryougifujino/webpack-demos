@@ -60,3 +60,13 @@ Used to maintain a "common" configuration to keep things DRY.
 +   mode: 'production',
 + });
 ```
+
+## NPM Scripts
+**package.json**
+```
+    "scripts": {
++     "start": "webpack-dev-server --open --config webpack.dev.js",
+-     "build": "webpack"
++     "build": "webpack --config webpack.prod.js"
+    },
+```
