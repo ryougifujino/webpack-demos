@@ -70,3 +70,6 @@ Used to maintain a "common" configuration to keep things DRY.
 +     "build": "webpack --config webpack.prod.js"
     },
 ```
+
+## Specify the Mode
+`process.env.NODE_ENV` is not set to `"production"` within the build script `webpack.config.js`.
