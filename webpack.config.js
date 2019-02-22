@@ -4,22 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/index.js',
-        another: './src/another-module.js'
+        index: './src/index.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].bundle.js"
+        filename: "[name].bundle.js",
+        chunkFilename: "[name].bundle.js"
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'Code Splitting'
         })
-    ],
-    optimization: {
-        splitChunks: {
-            chunks: "all"
-        }
-    }
+    ]
 };
