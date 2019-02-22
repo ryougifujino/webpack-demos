@@ -62,3 +62,45 @@ clients to request even less from the server to stay up to date.
 ```
 npm run build
 ```
+
+## Module Identifiers
+**src/index.js**
+```
+ import _ from 'lodash';
++ import Print from './print';
+
+  function component() {
+    var element = document.createElement('div');
+
+    // Lodash, now imported by this script
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
++   element.onclick = Print.bind(null, 'Hello webpack!');
+
+    return element;
+  }
+
+  document.body.appendChild(component());
+```
+Bundle hashes are all changed
+- The `main` bundle changed because of its new content.
+- The `vendor` bundle changed because its module.id was changed.
+(each `module.id` is incremented based on resolving order by default.)
+- And, the `manifest` bundle changed because it now contains a reference to a new module.
+
+Fix `vendor` hash
+- `NamedModulesPlugin` (development)
+- `HashedModuleIdsPlugin` (production)
+
+**webpack.config.js**
+```
+ plugins: [
+      new CleanWebpackPlugin(['dist']),
+      new HtmlWebpackPlugin({
+        title: 'Caching'
+      }),
++      new webpack.HashedModuleIdsPlugin()
+    ],
+```
+```
+npm run build
+```
