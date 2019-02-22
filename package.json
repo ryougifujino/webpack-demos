@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/ryougifujino/webpack-demos#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "latest",
+    "html-webpack-plugin": "latest",
     "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "lodash": "^4.17.11"
