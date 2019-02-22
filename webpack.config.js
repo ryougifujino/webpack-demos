@@ -3,18 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: "./src/index.js",
-        print: "./src/print.js"
-    },
+    entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].bundle.js"
+        filename: "[name].[contenthash].js"
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: 'Caching'
         })
     ]
 };
