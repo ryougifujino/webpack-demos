@@ -75,3 +75,14 @@ npm run build
 ```
 npm run build
 ``` 
+
+## Prefetching/Preloading modules
+```
+import(/* webpackPrefetch: true */ 'LoginModal');
+```
+This will result in `<link rel="prefetch" href="login-modal-chunk.js">` being appended in the head 
+of the page, which will instruct the browser to prefetch in idle time the `login-modal-chunk.js` file.
+```
+import(/* webpackPreload: true */ 'ChartingLibrary');
+```
+`<link rel="preload">`
