@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ryougifujino/webpack-demos#readme",
   "devDependencies": {
     "clean-webpack-plugin": "latest",
+    "exports-loader": "^0.7.0",
     "html-webpack-plugin": "latest",
     "imports-loader": "^0.8.0",
     "webpack": "^4.29.5",

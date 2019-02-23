@@ -62,3 +62,28 @@ npm install --save-dev imports-loader
 +     ]
 +   },
 ```
+
+## Global Exports
+We can use `exports-loader`, to export that global variable as a normal module export.  
+```
+npm install --save-dev exports-loader
+```
+**webpack.config.js**
+```
+    module: {
+      rules: [
+-       {
+-         test: require.resolve('./src/index.js'),
+-         use: 'imports-loader?this=>window'
+-       }
++       },
++       {
++         test: require.resolve('./src/globals.js'),
++         use: 'exports-loader?file,parse=helpers.parse'
++       }
+      ]
+    },
+```
+```
+npm run build
+```
