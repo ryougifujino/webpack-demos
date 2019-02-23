@@ -27,6 +27,8 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "babel-polyfill": "^6.26.0",
+    "lodash": "^4.17.11",
+    "whatwg-fetch": "^3.0.0"
   }
 }

@@ -10,3 +10,8 @@ document.body.appendChild(component());
 
 console.log(file);
 parse();
+
+fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(json => console.log(json[0]))
+    .catch(error => console.error(error));

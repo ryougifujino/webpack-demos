@@ -4,15 +4,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        index: "./src/index.js",
+        polyfills: './src/polyfills'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "bundle.js"
+        filename: "[name].bundle.js"
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: "Shimming"
+            title: "Shimming",
+            template: "index.html",
+            excludeChunks: ['polyfills']
         }),
         new webpack.ProvidePlugin({
             join: ['lodash', 'join']
