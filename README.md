@@ -44,3 +44,21 @@ This would go nicely with Tree Shaking as the rest of the `lodash` library shoul
 ```
 npm run build
 ```
+
+## Granular Shimming
+When the module is executed in a CommonJS context(in this example does't) where `this` is equal to 
+`module.exports`. In this case you can override this using the `imports-loader`:  
+```
+npm install --save-dev imports-loader
+```
+**webpack.config.js**
+```
++   module: {
++     rules: [
++       {
++         test: require.resolve('./src/index.js'),
++         use: 'imports-loader?this=>window'
++       }
++     ]
++   },
+```

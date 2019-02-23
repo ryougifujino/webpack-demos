@@ -17,5 +17,13 @@ module.exports = {
         new webpack.ProvidePlugin({
             join: ['lodash', 'join']
         })
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: require.resolve('./src/index.js'),
+                use: 'imports-loader?this=>window'
+            }
+        ]
+    }
 };
