@@ -1,48 +1,46 @@
-# Getting Started
+# Shimming
 
-## Basic Setup
-Initialize npm, install webpack locally, and install the webpack-cli
-```
-npm -y
-npm install webpack webpack-cli --save-dev
-```
+**use cases**
+- "broken modules" (e.g. $ for jQuery)
+- polyfill (i.e. load them on demand).
 
-Make sure we mark our package as private, as well as removing the main entry.
-This is to prevent an accidental publish of your code.
-**package.json**
-```
-{
-+   "private": true,
--   "main": "index.js",
-}
-```
+## Shimming Globals
+The `ProvidePlugin` makes a package available as a variable in every module compiled through webpack.
 
-## Creating a Bundle
-Install lodash
+**webpack.config.js**
 ```
-npm install --save lodash
-```
-Let's run `npx webpack`, which will take our script at `src/index.js` as the entry point, and will
- generate `dist/main.js` as the output. 
+  const path = require('path');
++ const webpack = require('webpack');
 
-## Using a Configuration
+  module.exports = {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist')
+-   }
++   },
++   plugins: [
++     new webpack.ProvidePlugin({
++       _: 'lodash'
++     })
++   ]
+  };
 ```
-npx webpack --config webpack.config.js
-```
-If a `webpack.config.js` is present, the webpack command picks it up by default. We use the 
-`--config` option here only to show that you can pass a config of any name. 
-
-## NPM Scripts
-Adding an npm script  
-**package.json**
-```
-"scripts": {
-+      "build": "webpack"
-},
-```
-Execute script
 ```
 npm run build
 ```
-Within scripts we can reference locally installed npm packages by name(here is webpack) the same 
-way we did with npx. 
+
+We can also use the `ProvidePlugin` to expose a single export of a module by configuring it with an 
+"array path" (e.g. `[module, child, ...children?]`).
+
+**webpack.config.js**
+```
+      new webpack.ProvidePlugin({
+-       _: 'lodash'
++       join: ['lodash', 'join']
+      })
+```
+This would go nicely with Tree Shaking as the rest of the `lodash` library should get dropped.
+```
+npm run build
+```
