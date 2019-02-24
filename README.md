@@ -1,48 +1,29 @@
-# Getting Started
+# Environment Variables
+`--env` allows you to pass in as many environment variables as you like.
+```
+webpack --env.NODE_ENV=local --env.production --progress
+``` 
+Setting up your `env` variable without assignment, `--env.production` sets `--env.production` to 
+`true` by default.
 
-## Basic Setup
-Initialize npm, install webpack locally, and install the webpack-cli
+To use the env variable, you must convert `module.exports` to a function:
 ```
-npm -y
-npm install webpack webpack-cli --save-dev
-```
+const path = require('path');
 
-Make sure we mark our package as private, as well as removing the main entry.
-This is to prevent an accidental publish of your code.
-**package.json**
-```
-{
-+   "private": true,
--   "main": "index.js",
-}
-```
+module.exports = env => {
+  // Use env.<YOUR VARIABLE> here:
+  console.log('NODE_ENV: ', env.NODE_ENV); // 'local'
+  console.log('Production: ', env.production); // true
 
-## Creating a Bundle
-Install lodash
+  return {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    }
+  };
+};
 ```
-npm install --save lodash
-```
-Let's run `npx webpack`, which will take our script at `src/index.js` as the entry point, and will
- generate `dist/main.js` as the output. 
-
-## Using a Configuration
-```
-npx webpack --config webpack.config.js
-```
-If a `webpack.config.js` is present, the webpack command picks it up by default. We use the 
-`--config` option here only to show that you can pass a config of any name. 
-
-## NPM Scripts
-Adding an npm script  
-**package.json**
-```
-"scripts": {
-+      "build": "webpack"
-},
-```
-Execute script
 ```
 npm run build
 ```
-Within scripts we can reference locally installed npm packages by name(here is webpack) the same 
-way we did with npx. 
