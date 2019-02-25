@@ -4,5 +4,6 @@ document.body.appendChild((() => {
     const [hello, webpack] = ['Hello', 'webpack'];
     element.innerHTML = [hello].concat([webpack]).join(' ');
 
+    Object.assign({}, {});
     return element;
 })());
