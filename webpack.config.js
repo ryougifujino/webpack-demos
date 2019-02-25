@@ -5,8 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        app: "./src/index.js",
-        print: "./src/print.js"
+        app: "./src/index.js"
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -20,7 +19,16 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: 'Integration With Babel'
         })
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: "babel-loader"
+            }
+        ]
+    }
 };
